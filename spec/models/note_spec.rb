@@ -4,6 +4,7 @@ RSpec.describe Note, type: :model do
   it { should belong_to(:user) }
   it { should belong_to(:project) }
   it { is_expected.to validate_presence_of(:message) }
+  it { is_expected.to have_attached_file(:attachment) }
 
   describe "search message for a term", parent: true do
     let(:user) { FactoryBot.create :user }
@@ -29,7 +30,7 @@ RSpec.describe Note, type: :model do
         message: "First, preheat the oven."
     }
 
-    context "when a match is found", focus: true do
+    context "when a match is found", child: true do
       it "returns notes that match the search term" do
         expect(Note.search("first")).to include(note1, note3)
         expect(Note.search("first")).to_not include(note2)
