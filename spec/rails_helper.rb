@@ -67,6 +67,7 @@ RSpec.configure do |config|
   # Use Devise helpers in test
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include RequestSpecHelper, type: :request
+  config.include RequestSpecHelper, type: :feature
   config.include Warden::Test::Helpers
 
   # Clean up file uploads when suite is finished
